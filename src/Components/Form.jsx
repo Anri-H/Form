@@ -41,7 +41,13 @@ export default class Form extends React.Component {
           onChange={this.handleChange}
           disabled={isDisabled.firstName}
         />
-        
+        <Input
+          title="Last Name"
+          type="text"
+          name="lastName"
+          onChange={this.handleChange}
+          disabled={isDisabled.lastName}
+        />
         <input disabled={isDisabled} type="submit" value="Отправить" />
       </form>
     );

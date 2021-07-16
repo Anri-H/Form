@@ -1,6 +1,5 @@
 import "./App.css";
-import Email from "./Components/Form/Email/Email";
-import Form from "./Components/Form/Form";
+import Form from "./Components/Form";
 
 function App() {
   return (
@@ -9,7 +8,8 @@ function App() {
         <div>
           <h2>Sign in or create an account</h2>
         </div>
-        <div>
+
+        <div className="form">
           <h2>Create an account</h2>
           <Form />
         </div>

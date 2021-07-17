@@ -1,5 +1,6 @@
 import React from "react";
 import Input from "./Input/Input";
+import "./submit.css";
 import { validation } from "../helpers/validation";
 
 export default class Form extends React.Component {
@@ -13,23 +14,15 @@ export default class Form extends React.Component {
     };
   }
 
-  static isDisabled = {
-    email: true,
-    firstName: true,
-    lastName: true,
-    password: true,
-  };
-
   handleChange = ({ target }) => {
     console.log(this.state);
-    Form.isDisabled = { [target.name]: validation[target.name](target.value) };
     localStorage.setItem([target.name], target.value);
     this.setState({ [target.name]: target.value });
   };
 
   handleSubmit = (event) => {
     event.preventDefault();
-    alert("Отправленное имя: " + JSON.stringyfy(this.state));
+    alert(JSON.stringify(this.state));
   };
 
   render() {
@@ -42,7 +35,7 @@ export default class Form extends React.Component {
           name="email"
           value={email}
           onChange={this.handleChange}
-          disabled={Form.isDisabled.email}
+          disabled={validation.email(email)}
         />
         <Input
           title="First Name"
@@ -50,7 +43,7 @@ export default class Form extends React.Component {
           name="firstName"
           value={firstName}
           onChange={this.handleChange}
-          disabled={Form.isDisabled.firstName}
+          disabled={validation.firstName(firstName)}
         />
         <Input
           title="Last Name"
@@ -58,7 +51,7 @@ export default class Form extends React.Component {
           name="lastName"
           value={lastName}
           onChange={this.handleChange}
-          disabled={Form.isDisabled.lastName}
+          disabled={validation.lastName(lastName)}
         />
         <Input
           title="Password"
@@ -66,10 +59,10 @@ export default class Form extends React.Component {
           name="password"
           value={password}
           onChange={this.handleChange}
-          disabled={Form.isDisabled.password}
+          disabled={validation.password(password)}
         />
 
-        <input disabled={Form.invalid} type="submit" value="Create account" />
+        <input type="submit" className={"button"} value="Create account" />
       </form>
     );
   }

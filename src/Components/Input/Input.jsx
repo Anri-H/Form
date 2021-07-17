@@ -19,7 +19,7 @@ export default function Input({
         onChange={onChange}
       />
 
-      {disabled ? (
+      {value!=="" && disabled ? (
         name === "password" ? (
           <>
             <p className={style.inValid}>Minimum eight characters</p>

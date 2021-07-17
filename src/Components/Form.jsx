@@ -6,49 +6,70 @@ export default class Form extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isDisabled: {},
+      email: localStorage.getItem("email"),
+      firstName: localStorage.getItem("firstName"),
+      lastName: localStorage.getItem("lastName"),
+      password: localStorage.getItem("password"),
     };
   }
 
+  static isDisabled = {
+    email: true,
+    firstName: true,
+    lastName: true,
+    password: true,
+  };
+
   handleChange = ({ target }) => {
     console.log(this.state);
-    this.setState({
-      isDisabled: { [target.name]: validation[target.name](target.value) },
-    });
+    Form.isDisabled = { [target.name]: validation[target.name](target.value) };
+    localStorage.setItem([target.name], target.value);
     this.setState({ [target.name]: target.value });
   };
 
   handleSubmit = (event) => {
-    alert("Отправленное имя: " + toString(this.state));
     event.preventDefault();
+    alert("Отправленное имя: " + JSON.stringyfy(this.state));
   };
 
   render() {
-    const { isDisabled } = this.state;
+    const { email, firstName, lastName, password } = this.state;
     return (
       <form onSubmit={this.handleSubmit}>
         <Input
           title="Email address"
           type="email"
           name="email"
+          value={email}
           onChange={this.handleChange}
-          disabled={isDisabled.email}
+          disabled={Form.isDisabled.email}
         />
         <Input
           title="First Name"
           type="text"
           name="firstName"
+          value={firstName}
           onChange={this.handleChange}
-          disabled={isDisabled.firstName}
+          disabled={Form.isDisabled.firstName}
         />
         <Input
           title="Last Name"
           type="text"
           name="lastName"
+          value={lastName}
           onChange={this.handleChange}
-          disabled={isDisabled.lastName}
+          disabled={Form.isDisabled.lastName}
         />
-        <input disabled={isDisabled} type="submit" value="Отправить" />
+        <Input
+          title="Password"
+          type="password"
+          name="password"
+          value={password}
+          onChange={this.handleChange}
+          disabled={Form.isDisabled.password}
+        />
+
+        <input disabled={Form.invalid} type="submit" value="Create account" />
       </form>
     );
   }

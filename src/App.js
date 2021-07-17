@@ -6,11 +6,11 @@ function App() {
     <div className="App">
       <header className="App-header">
         <div>
-          <h2>Sign in or create an account</h2>
+          <h2 className={"title"}>Sign in or create an account</h2>
         </div>
 
         <div className="form">
-          <h2>Create an account</h2>
+          <h2 className={"title"}>Create an account</h2>
           <Form />
         </div>
       </header>

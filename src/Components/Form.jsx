@@ -2,6 +2,7 @@ import React from "react";
 import Input from "./Input/Input";
 import "./submit.css";
 import { validation } from "../helpers/validation";
+import Country from "./Country/Country";
 
 export default class Form extends React.Component {
   constructor(props) {
@@ -11,11 +12,12 @@ export default class Form extends React.Component {
       firstName: localStorage.getItem("firstName"),
       lastName: localStorage.getItem("lastName"),
       password: localStorage.getItem("password"),
+      country: localStorage.getItem("country"),
     };
   }
 
   handleChange = ({ target }) => {
-    console.log(this.state);
+    console.log(this.props)
     localStorage.setItem([target.name], target.value);
     this.setState({ [target.name]: target.value });
   };
@@ -26,7 +28,7 @@ export default class Form extends React.Component {
   };
 
   render() {
-    const { email, firstName, lastName, password } = this.state;
+    const { email, firstName, lastName, password, country } = this.state;
     return (
       <form onSubmit={this.handleSubmit}>
         <Input
@@ -61,7 +63,7 @@ export default class Form extends React.Component {
           onChange={this.handleChange}
           disabled={validation.password(password)}
         />
-
+        <Country value={country} onChange={this.handleChange} />
         <input type="submit" className={"button"} value="Create account" />
       </form>
     );

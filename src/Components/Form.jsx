@@ -1,7 +1,7 @@
 import React from "react";
 import Input from "./Input/Input";
 import "./submit.css";
-import { validation } from "../helpers/validation";
+import { validate } from "../helpers/validate";
 import Country from "./Country/Country";
 
 export default class Form extends React.Component {
@@ -17,7 +17,7 @@ export default class Form extends React.Component {
   }
 
   handleChange = ({ target }) => {
-    console.log(this.props)
+    console.log(this.props);
     localStorage.setItem([target.name], target.value);
     this.setState({ [target.name]: target.value });
   };
@@ -37,7 +37,6 @@ export default class Form extends React.Component {
           name="email"
           value={email}
           onChange={this.handleChange}
-          disabled={validation.email(email)}
         />
         <Input
           title="First Name"
@@ -45,7 +44,6 @@ export default class Form extends React.Component {
           name="firstName"
           value={firstName}
           onChange={this.handleChange}
-          disabled={validation.firstName(firstName)}
         />
         <Input
           title="Last Name"
@@ -53,7 +51,6 @@ export default class Form extends React.Component {
           name="lastName"
           value={lastName}
           onChange={this.handleChange}
-          disabled={validation.lastName(lastName)}
         />
         <Input
           title="Password"
@@ -61,7 +58,6 @@ export default class Form extends React.Component {
           name="password"
           value={password}
           onChange={this.handleChange}
-          disabled={validation.password(password)}
         />
         <Country value={country} onChange={this.handleChange} />
         <input type="submit" className={"button"} value="Create account" />

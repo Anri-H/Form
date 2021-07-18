@@ -1,4 +1,5 @@
 import style from "./input.module.css";
+import { validate, passValidate } from "../../helpers/validate";
 
 export default function Input({
   title,
@@ -19,17 +20,17 @@ export default function Input({
         onChange={onChange}
       />
 
-      {value!=="" && disabled ? (
+      {value !== "" ? (
         name === "password" ? (
           <>
-            <p className={style.inValid}>Minimum eight characters</p>
-            <p className={style.inValid}>At least one uppercase letter</p> 
-            <p className={style.inValid}>One lowercase letter</p>
-            <p className={style.inValid}>One number</p> 
-            <p className={style.inValid}>One special character</p>
-            </>
+            {passValidate.upperCase(value)}
+            {passValidate.lowerCase(value)}
+            {passValidate.digit(value)}
+            {passValidate.special(value)}
+            {passValidate.length(value)}
+          </>
         ) : (
-          <p className={style.inValid}>Your input invalid</p>
+          validate[name](value)
         )
       ) : (
         ""

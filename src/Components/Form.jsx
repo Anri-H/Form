@@ -1,7 +1,6 @@
 import React from "react";
 import Input from "./Input/Input";
 import "./submit.css";
-import { validate } from "../helpers/validate";
 import Country from "./Country/Country";
 
 export default class Form extends React.Component {

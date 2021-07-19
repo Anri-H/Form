@@ -23,14 +23,36 @@ export default function Input({
       {value !== "" ? (
         name === "password" ? (
           <>
-            {passValidate.upperCase(value)}
-            {passValidate.lowerCase(value)}
-            {passValidate.digit(value)}
-            {passValidate.special(value)}
-            {passValidate.length(value)}
+            {passValidate.upperCase(value) ? (
+              <p className={style.inValid}>At least one upper case</p>
+            ) : (
+              ""
+            )}
+            {passValidate.lowerCase(value) ? (
+              <p className={style.inValid}>At least one lower case</p>
+            ) : (
+              ""
+            )}
+            {passValidate.digit(value) ? (
+              <p className={style.inValid}>At least one digit</p>
+            ) : (
+              ""
+            )}
+            {passValidate.special(value) ? (
+              <p className={style.inValid}>At least one special character</p>
+            ) : (
+              ""
+            )}
+            {passValidate.length(value) ? (
+              <p className={style.inValid}>Minimum eight in length</p>
+            ) : (
+              ""
+            )}
           </>
+        ) : validate[name](value) ? (
+          <p className={style.inValid}>Invalid {title}</p>
         ) : (
-          validate[name](value)
+          ""
         )
       ) : (
         ""

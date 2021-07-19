@@ -1,71 +1,38 @@
-import style from "./invalidInput.module.css";
 
 export const validate = {
   email: (val) => {
     const reg = /^\S+@\S+\.\S+$/;
-    return !reg.test(val) ? (
-      <p className={style.inValid}>Invalid Email address</p>
-    ) : (
-      ""
-    );
+    return !reg.test(val);
   },
   firstName: (val) => {
     const reg = /[a-zA-Z]{1,}/;
-    return !reg.test(val) ? (
-      <p className={style.inValid}>Invalid First name</p>
-    ) : (
-      ""
-    );
+    return !reg.test(val);
   },
   lastName: (val) => {
     const reg = /[a-zA-Z]{1,}/;
-    return !reg.test(val) ? (
-      <p className={style.inValid}>Invalid Last name</p>
-    ) : (
-      ""
-    );
+    return !reg.test(val);
   },
 };
 
 export const passValidate = {
   upperCase: (val) => {
     const reg = /(?=.*?[A-Z])/;
-    return !reg.test(val) ? (
-      <p className={style.inValid}>At least one upper case</p>
-    ) : (
-      ""
-    );
+    return !reg.test(val) 
   },
   lowerCase: (val) => {
     const reg = /(?=.*?[a-z])/;
-    return !reg.test(val) ? (
-      <p className={style.inValid}>At least one lower case</p>
-    ) : (
-      ""
-    );
+    return !reg.test(val)
   },
   digit: (val) => {
     const reg = /(?=.*?[0-9])/;
-    return !reg.test(val) ? (
-      <p className={style.inValid}>At least one digit</p>
-    ) : (
-      ""
-    );
+    return !reg.test(val) 
   },
   special: (val) => {
     const reg = /(?=.*?[#?!@$%^&*-])/;
-    return !reg.test(val) ? (
-      <p className={style.inValid}>At least one special character</p>
-    ) : (
-      ""
-    );
+    return !reg.test(val)
   },
   length: (val) => {
     const reg = /.{8,}/;
-    return !reg.test(val) ? (
-      <p className={style.inValid}>Minimum eight in length</p>
-    ) : (
-      ""
-    );
+    return !reg.test(val) 
   },
 };

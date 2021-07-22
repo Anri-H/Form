@@ -7,16 +7,15 @@ export default class Form extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: localStorage.getItem("email"),
-      firstName: localStorage.getItem("firstName"),
-      lastName: localStorage.getItem("lastName"),
-      password: localStorage.getItem("password"),
+      email: localStorage.getItem("email") || "",
+      firstName: localStorage.getItem("firstName") || "",
+      lastName: localStorage.getItem("lastName") || "",
+      password: localStorage.getItem("password") || "",
       country: localStorage.getItem("country"),
     };
   }
 
   handleChange = ({ target }) => {
-    console.log(this.props);
     localStorage.setItem([target.name], target.value);
     this.setState({ [target.name]: target.value });
   };
